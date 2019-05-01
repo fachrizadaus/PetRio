@@ -1,0 +1,30 @@
+{
+    "frames": [{
+            "name": "snake-head",
+            "position": {
+                "x": 0,
+                "y": 3,
+                "w": 663,
+                "h": 681
+            }
+        },
+        {
+            "name": "snake-body",
+            "position": {
+                "x": 689,
+                "y": 2,
+                "w": 644,
+                "h": 680
+            }
+        },
+        {
+            "name": "snake-tail",
+            "position": {
+                "x": 1357,
+                "y": 0,
+                "w": 668,
+                "h": 681
+            }
+        }
+    ]
+}
