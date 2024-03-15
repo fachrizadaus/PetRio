@@ -8,7 +8,7 @@ var snake;
 var scl = 40;
 var food;
 
-var directionState = "DOWN"; // IF CHANGE THIS, DON'T FORGET TO CHANGE X and Y SPEED ON SNAKE.JS
+var directionState = "RIGHT"; // IF CHANGE THIS, DON'T FORGET TO CHANGE X and Y SPEED ON SNAKE.JS
 
 var fps = 10;
 var getFPS = [];

@@ -7,7 +7,7 @@ var drawModule = (function () {
         ctx.strokeRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
     }
 
-    var pizza = function (x, y) {
+    var appleFood = function (x, y) {
         ctx.fillStyle = 'yellow';
         ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
         ctx.fillStyle = 'red';
@@ -81,7 +81,7 @@ var drawModule = (function () {
             bodySnake(snake[i].x, snake[i].y);
         }
 
-        pizza(food.x, food.y);
+        appleFood(food.x, food.y);
         scoreText();
     }
 
@@ -100,12 +100,12 @@ var drawModule = (function () {
                 food.y = Math.floor((Math.random() * 30) + 1);
             }
         }
-        //console.log(food);
     }
 
     var checkCollision = function (x, y, array) {
+        console.log("Checking collision")
         for (var i = 0; i < array.length; i++) {
-            if (array[i].x === x && array[i].y === y){
+            if (array[i].x === x && array[i].y === y) {
                 return true;
                 console.log("Game Over");
             }

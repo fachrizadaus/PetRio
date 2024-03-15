@@ -100,20 +100,13 @@ function draw() {
       foodPos();
       console.log("MK SAMA DENGAN KEPALA");
     }
-    // else if (poison.x == snake.x && poison.y == snake.y) {
-    //   // foodPos();
-    //   console.log("RC SAMA DENGAN KEPALA");
-    // }
+
 
     for (var i = 0; i < snake.tail.length; i++) {
       if (food.x == snake.tail[i].x && food.y == snake.tail[i].y) {
         foodPos();
         console.log("MK SAMA DENGAN BADAN");
       }
-      // else if (poison.x == snake.tail[i].x && poison.y == snake.tail[i].y) {
-      //   // foodPos();
-      //   console.log("RC SAMA DENGAN BADAN");
-      // }
     }
 
     /** Game Cores */
@@ -431,17 +424,14 @@ function showTheQuest(Q1, Q2, symbols) {
   noLoop();
   Swal.fire({
     type: "question",
-    // title: "QUIZ",
     title: "<h2>" + Q1 + symbols + Q2 + "</h2>",
-    confirmButtonText: "YUHUUUU!!!",
+    confirmButtonText: "Makan Jawabannya Sekarang!",
   }).then((result) => {
-    // if (result.value) {
     snake.score += 1;
     snake.total += 1;
     isQuiz = false;
     answer = true;
     foodPos();
     loop();
-    // }
   });
 }
