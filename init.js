@@ -5,7 +5,7 @@ var x = 1200;
 var y = 600;
 
 var snake;
-var scl =40;
+var scl = 40;
 var food;
 
 var directionState = "DOWN"; // IF CHANGE THIS, DON'T FORGET TO CHANGE X and Y SPEED ON SNAKE.JS

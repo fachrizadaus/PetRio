@@ -19,16 +19,16 @@ function foodPos() {
 }
 
 function setup() {
-  canvas = createCanvas(x,y);
+  canvas = createCanvas(x, y);
   centerCanvas();
-  
+
   snake = new Snake();
   foodPos();
 
   for (i = 5; i <= 200; i += 5) {
     quizTime.push(i);
   }
-  for (i = 10; i <= 150; i += 10) {  
+  for (i = 10; i <= 150; i += 10) {
     getFPS.push(i);
   }
   for (i = 10; i <= 50; i += 2) {
@@ -36,7 +36,7 @@ function setup() {
   }
 
   let frames = appleData.frames;
-  for (let i = 0; i < frames.length; i++){
+  for (let i = 0; i < frames.length; i++) {
     let pos = frames[i].position;
     let img = appleSprite.get(pos.x, pos.y, pos.w, pos.h);
     animation.push(img);
@@ -81,16 +81,16 @@ function draw() {
     }
   }
 
-  for(var i = 0; i<= 10; i++){
-    if (snake.score >= getFPS[i]+1) {
+  for (var i = 0; i <= 10; i++) {
+    if (snake.score >= getFPS[i] + 1) {
       fps = newFPS[i];
     }
   }
-  
+
   if (isQuiz == false) {
     background(bg);
     frameRate(fps);
-    
+
     if (snake.getFood(food)) {
       foodPos();
       answer = false;
@@ -99,17 +99,17 @@ function draw() {
     if (food.x == snake.x && food.y == snake.y) {
       foodPos();
       console.log("MK SAMA DENGAN KEPALA");
-    } 
+    }
     // else if (poison.x == snake.x && poison.y == snake.y) {
     //   // foodPos();
     //   console.log("RC SAMA DENGAN KEPALA");
     // }
-    
+
     for (var i = 0; i < snake.tail.length; i++) {
       if (food.x == snake.tail[i].x && food.y == snake.tail[i].y) {
         foodPos();
         console.log("MK SAMA DENGAN BADAN");
-      } 
+      }
       // else if (poison.x == snake.tail[i].x && poison.y == snake.tail[i].y) {
       //   // foodPos();
       //   console.log("RC SAMA DENGAN BADAN");
@@ -141,17 +141,37 @@ function draw() {
       var countFalse = [];
       for (var i = 0; i < falseAns.toString().length; i += 1) {
         countFalse.push(falseAns.toString().charAt(i));
-      }      
+      }
       /** End Count Answer */
-      
-      /** Size, Pos X, and Pos Y */
-      if (countTrue.length == 3) { tSize = 14; trueTextPosX = food.x + 3; trueTextPosY = food.y - 1; } 
-      else if (countTrue.length == 2) { tSize = 18; trueTextPosX = food.x + 6; trueTextPosY = food.y - 1; } 
-      else if (countTrue.length == 1) { tSize = 28; trueTextPosX = food.x + 7; trueTextPosY = food.y - 2; }
 
-      if (countFalse.length == 3) { fSize = 14; falseTextPosX = poison.x + 3; falseTextPosY = poison.y - 1; } 
-      else if (countFalse.length == 2) { fSize = 18; falseTextPosX = poison.x + 6; falseTextPosY = poison.y - 1; } 
-      else if (countFalse.length == 1) { fSize = 28; falseTextPosX = poison.x + 7; falseTextPosY = poison.y - 2; }
+      /** Size, Pos X, and Pos Y */
+      if (countTrue.length == 3) {
+        tSize = 14;
+        trueTextPosX = food.x + 3;
+        trueTextPosY = food.y - 1;
+      } else if (countTrue.length == 2) {
+        tSize = 18;
+        trueTextPosX = food.x + 6;
+        trueTextPosY = food.y - 1;
+      } else if (countTrue.length == 1) {
+        tSize = 28;
+        trueTextPosX = food.x + 7;
+        trueTextPosY = food.y - 2;
+      }
+
+      if (countFalse.length == 3) {
+        fSize = 14;
+        falseTextPosX = poison.x + 3;
+        falseTextPosY = poison.y - 1;
+      } else if (countFalse.length == 2) {
+        fSize = 18;
+        falseTextPosX = poison.x + 6;
+        falseTextPosY = poison.y - 1;
+      } else if (countFalse.length == 1) {
+        fSize = 28;
+        falseTextPosX = poison.x + 7;
+        falseTextPosY = poison.y - 2;
+      }
       /** End Size, Pos X, and Pos Y */
 
       /** Show Text */
@@ -160,9 +180,9 @@ function draw() {
       textAlign(CENTER, CENTER);
       textFont(fontGomarice);
       textSize(tSize);
-      stroke('#fff');
+      stroke("#fff");
       strokeWeight(3);
-      fill('#A80000');
+      fill("#A80000");
       text(trueAns, trueTextPosX, trueTextPosY, scl, scl);
       pop();
 
@@ -171,14 +191,14 @@ function draw() {
       textAlign(CENTER, CENTER);
       textFont(fontGomarice);
       textSize(fSize);
-      stroke('#fff');
+      stroke("#fff");
       strokeWeight(3);
-      fill('#A80000');
+      fill("#A80000");
       text(falseAns, falseTextPosX, falseTextPosY, scl, scl);
       pop();
       /** End Show Text */
     } else {
-      image(animation[(frameCount % animation.length)], food.x, food.y, scl, scl);
+      image(animation[frameCount % animation.length], food.x, food.y, scl, scl);
     }
 
     push();
@@ -217,11 +237,17 @@ function Quest() {
   }
 
   var takeRand;
-  if (snake.score >= 5) { takeRand = 10; } 
-  else if (snake.score >= 10) { takeRand = 20; } 
-  else if (snake.score >= 15) { takeRand = 30; } 
-  else if (snake.score >= 20) { takeRand = 40; } 
-  else if (snake.score >= 25) { takeRand = 50; }
+  if (snake.score >= 5) {
+    takeRand = 10;
+  } else if (snake.score >= 10) {
+    takeRand = 20;
+  } else if (snake.score >= 15) {
+    takeRand = 30;
+  } else if (snake.score >= 20) {
+    takeRand = 40;
+  } else if (snake.score >= 25) {
+    takeRand = 50;
+  }
 
   var temp1, temp2;
   getRandQuestX1 = floor(random(0, takeRand));
@@ -243,14 +269,29 @@ function Quest() {
     showTheQuest(getRandQuestX1, getRandQuestY1, sym);
     if (theQ != []) {
       theQ = [];
-      theQ.push(operation, getRandQuestX1, getRandQuestY1, getAnswer1, getRandQuestX2, getRandQuestY2, getAnswer2);
+      theQ.push(
+        operation,
+        getRandQuestX1,
+        getRandQuestY1,
+        getAnswer1,
+        getRandQuestX2,
+        getRandQuestY2,
+        getAnswer2
+      );
     } else {
-      theQ.push(operation, getRandQuestX1, getRandQuestY1, getAnswer1, getRandQuestX2, getRandQuestY2, getAnswer2);
+      theQ.push(
+        operation,
+        getRandQuestX1,
+        getRandQuestY1,
+        getAnswer1,
+        getRandQuestX2,
+        getRandQuestY2,
+        getAnswer2
+      );
     }
-  } 
+  } else if (operation == "KURANG") {
 
-  /** Check Operation "KURANG" */
-  else if (operation == "KURANG") {
+    /** Check Operation "KURANG" */
     if (getRandQuestX1 < getRandQuestY1) {
       temp1 = getRandQuestX1;
       getRandQuestX1 = getRandQuestY1;
@@ -273,14 +314,29 @@ function Quest() {
     showTheQuest(getRandQuestX1, getRandQuestY1, sym);
     if (theQ != []) {
       theQ = [];
-      theQ.push(operation, getRandQuestX1, getRandQuestY1, getAnswer1, getRandQuestX2, getRandQuestY2, getAnswer2);
+      theQ.push(
+        operation,
+        getRandQuestX1,
+        getRandQuestY1,
+        getAnswer1,
+        getRandQuestX2,
+        getRandQuestY2,
+        getAnswer2
+      );
     } else {
-      theQ.push(operation, getRandQuestX1, getRandQuestY1, getAnswer1, getRandQuestX2, getRandQuestY2, getAnswer2);
+      theQ.push(
+        operation,
+        getRandQuestX1,
+        getRandQuestY1,
+        getAnswer1,
+        getRandQuestX2,
+        getRandQuestY2,
+        getAnswer2
+      );
     }
-  } 
+  } else if (operation == "KALI") {
 
-  /** Check Operation "KALI" */
-  else if (operation == "KALI") {
+    /** Check Operation "KALI" */
     getAnswer1 = getRandQuestX1 * getRandQuestY1;
     getAnswer2 = getRandQuestX2 * getRandQuestY2;
 
@@ -292,25 +348,48 @@ function Quest() {
     showTheQuest(getRandQuestX1, getRandQuestY1, sym);
     if (theQ != []) {
       theQ = [];
-      theQ.push(operation, getRandQuestX1, getRandQuestY1, getAnswer1, getRandQuestX2, getRandQuestY2, getAnswer2);
+      theQ.push(
+        operation,
+        getRandQuestX1,
+        getRandQuestY1,
+        getAnswer1,
+        getRandQuestX2,
+        getRandQuestY2,
+        getAnswer2
+      );
     } else {
-      theQ.push(operation, getRandQuestX1, getRandQuestY1, getAnswer1, getRandQuestX2, getRandQuestY2, getAnswer2);
+      theQ.push(
+        operation,
+        getRandQuestX1,
+        getRandQuestY1,
+        getAnswer1,
+        getRandQuestX2,
+        getRandQuestY2,
+        getAnswer2
+      );
     }
-  } 
+  } else if (operation == "BAGI") {
 
-  /** Check Operation "BAGI" */
-  else if (operation == "BAGI") {
+    /** Check Operation "BAGI" */
     // Q * A = Q2;
-    if (getRandQuestX1 > 10) { getRandQuestX1 = floor(random(2, 10)); } 
-    else if (getRandQuestX2 > 10) { getRandQuestX1 = floor(random(2, 10)); }
+    if (getRandQuestX1 > 10) {
+      getRandQuestX1 = floor(random(2, 10));
+    } else if (getRandQuestX2 > 10) {
+      getRandQuestX1 = floor(random(2, 10));
+    }
 
     var getValue1 = floor(random(2, getRandQuestX1));
     var getValue2 = floor(random(2, getRandQuestX2));
 
-    if (getRandQuestY1 == 0) { getRandQuestY1 = getRandQuestY1 + getMoreRand; } 
-    else if (getRandQuestY1 > 10) { getRandQuestY1 = floor(random(1, 10)); }
-    else if (getRandQuestY2 == 0) { getRandQuestY2 = getRandQuestY2 + getMoreRand; }
-    else if (getRandQuestY2 > 10) { getRandQuestY2 = floor(random(1, 10)); }
+    if (getRandQuestY1 == 0) {
+      getRandQuestY1 = getRandQuestY1 + getMoreRand;
+    } else if (getRandQuestY1 > 10) {
+      getRandQuestY1 = floor(random(1, 10));
+    } else if (getRandQuestY2 == 0) {
+      getRandQuestY2 = getRandQuestY2 + getMoreRand;
+    } else if (getRandQuestY2 > 10) {
+      getRandQuestY2 = floor(random(1, 10));
+    }
 
     getRandX1 = getRandQuestY1 * getValue1;
     getRandX2 = getRandQuestY2 * getValue2;
@@ -322,10 +401,26 @@ function Quest() {
     showTheQuest(getRandX1, getRandQuestY1, sym);
     if (theQ != []) {
       theQ = [];
-      theQ.push(operation, getRandX1, getRandQuestY1, getValue1, getRandX2, getRandQuestY2, getValue2);
-      console.log("GRQ: "+getRandQuestX1);
+      theQ.push(
+        operation,
+        getRandX1,
+        getRandQuestY1,
+        getValue1,
+        getRandX2,
+        getRandQuestY2,
+        getValue2
+      );
+      console.log("GRQ: " + getRandQuestX1);
     } else {
-      theQ.push(operation, getRandX1, getRandQuestY1, getValue1, getRandX2, getRandQuestY2, getValue2);
+      theQ.push(
+        operation,
+        getRandX1,
+        getRandQuestY1,
+        getValue1,
+        getRandX2,
+        getRandQuestY2,
+        getValue2
+      );
     }
   }
 
@@ -337,9 +432,9 @@ function showTheQuest(Q1, Q2, symbols) {
   Swal.fire({
     type: "question",
     // title: "QUIZ",
-    title: "<h2>"+ Q1 + symbols + Q2 +"</h2>",
+    title: "<h2>" + Q1 + symbols + Q2 + "</h2>",
     confirmButtonText: "YUHUUUU!!!",
-  }).then(result => {
+  }).then((result) => {
     // if (result.value) {
     snake.score += 1;
     snake.total += 1;
